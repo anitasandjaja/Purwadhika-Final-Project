@@ -1,0 +1,281 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Insurance Fraud Checking</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+
+<body>
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/">Insurance Fraud Checking</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="/visualization">Data Visualization</a></li>
+                <li><a href="https://github.com/anitasandjaja/">Contact</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+<div class="jumbotron">
+    <div class="container">
+        <h2 class="text-center">Insurance Fraud Checking</h2>
+        <p class="text-center">Check the account</p>
+        <hr />
+      
+        <div class="row">
+            
+                <form action="/go" method="post" role="form">
+                    <div class="col-lg-6 form-group-lg">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">Account details</div>
+                        <div class="panel-body">
+                            <div class="form-group">
+                                        <label for="insured_sex">Gender:</label>
+                                        <select class="form-control" name="insured_sex" id="insured_sex">
+                                            <option value="M">Male</option>
+                                            <option value="F">Female</option>
+                                        </select>
+
+                                        <label for="age">Age:</label>
+                                        <input type="number" class="form-control" name="age" id="age">
+
+                                        <label for="months">Months as customers:</label>
+                                        <input type="number" class="form-control" name="months" id="months">
+
+                                        <label for="total_claim_amount">Total claim amount:</label>
+                                        <input type="number" class="form-control" name="total_claim_amount" id="total_claim_amount">
+                                        
+                                        <label for="policy_annual">Policy annual premium:</label>
+                                        <input type="number" class="form-control" step='.01'  name="policy_annual" id="policy_annual">
+
+
+                                        <label for="insured_occupation">Insured Occupation:</label>
+                                        <select class="form-control" name="insured_occupation" id="insured_occupation">
+                                                <option name="insured_occupation_adm-clerical" value="insured_occupation_adm-clerical">Admin clerical</option>
+                                                <option name="insured_occupation_armed-forces" value="insured_occupation_armed-forces">Armed forces</option>
+                                                <option name="insured_occupation_craft-repair" value="insured_occupation_craft-repair">Craft repair</option>
+                                                <option name="insured_occupation_exec-managerial" value="insured_occupation_exec-managerial">Executive managerial</option>
+                                                <option name="insured_occupation_farming-fishing" value="insured_occupation_farming-fishing">Farming, fishing</option>
+                                                <option name="insured_occupation_handlers-cleaners" value="insured_occupation_handlers-cleaners">Handler cleaners</option>
+                                                <option name="insured_occupation_machine-op-inspct" value="insured_occupation_machine-op-inspct">Machine operator</option>
+                                                <option name="insured_occupation_priv-house-service" value="insured_occupation_priv-house-service">Private house service</option>
+                                                <option name="insured_occupation_prof-specialty" value="insured_occupation_prof-specialty">Proffesional speciality</option>
+                                                <option name="insured_occupation_protective-serv" value="'insured_occupation_protective-serv">Protective service</option>
+                                                <option name="insured_occupation_sales" value="insured_occupation_sales">Sales</option>
+                                                <option name="insured_occupation_tech-support" value="insured_occupation_tech-support">Tech support</option>
+                                                <option name="insured_occupation_transport-moving" value="insured_occupation_transport-moving">Transport moving</option>
+                                                <option name="insured_occupation_other-service" value="insured_occupation_other-service">Other service</option>
+
+                                        </select>
+                                        <label for="insured_hobbies">Insured hobbies:</label>
+                                            <select class="form-control" name="insured_hobbies" id="insured_hobbies">
+                                                <option name="basejumping" value="insured_hobbies_base-jumping">Base jumping</option>
+                                                <option name="basketball" value="insured_hobbies_basketball">Basketball</option>
+                                                <option name="boardgames" value="insured_hobbies_board-games">Board games</option>
+                                                <option name="bungiejumping" value="insured_hobbies_bungie-jumping">Bungie jumping</option>
+                                                <option name="camping" value="insured_hobbies_camping">Camping</option>
+                                                <option name="chess" value="insured_hobbies_chess">Chess</option>
+                                                <option name="crossfit" value="insured_hobbies_cross-fit">Crossfit</option>
+                                                <option name="dancing" value="insured_hobbies_dancing">Dancing</option>
+                                                <option name="exercise" value="insured_hobbies_exercise">Exercise</option>
+                                                <option name="golf" value="insured_hobbies_golf">Golf</option>
+                                                <option name="hiking" value="insured_hobbies_hiking">Hiking</option>
+                                                <option name="kayaking" value="insured_hobbies_kayaking">Kayaking</option>
+                                                <option name="movies" value="insured_hobbies_movies">Movies</option>
+                                                <option name="paintball" value="insured_hobbies_paintball">Paintball</option>
+                                                <option name="polo" value="insured_hobbies_polo">Polo</option>
+                                                <option name="reading" value="insured_hobbies_reading">Reading</option>
+                                                <option name="skydiving" value="insured_hobbies_skydiving">Skydiving</option>
+                                                <option name="sleeping" value="insured_hobbies_sleeping">Sleeping</option>
+                                                <option name="videogames" value="insured_hobbies_video-games">Video games</option>
+                                                <option name="yachting" value="insured_hobbies_yachting">Yachting</option>
+                                        </select>
+                                            
+                                        <label for="insured_relationship">Insured relationship</label>
+                                        <select class="form-control" name="insured_relationship" id="insured_relationship">
+                                                <option name="husband" value="husband">Husband</option>
+                                                <option name="wife" value="wife">Wife</option>
+                                                <option name="child" value="child">Child</option>
+                                                <option name="not_in_family" value="not_in_family">Not-in-family</option>
+                                                <option name="other_relative" value=other_relative">Other</option>
+                                                <option name="unmarried" value="unmarried">Unmarried</option>
+                                                
+                                        </select>
+
+                                        <label for="education_level">Insured education level:</label>
+                                        <select class="form-control" name="education_level" id="education_level">
+                                                <option name="associate" value="associate">Associate</option>
+                                                <option name="college" value="college">College</option>
+                                                <option name="highschool" value=highschool">Highschool</option>
+                                                <option name="jd" value="jd">JD</option>
+                                                <option name="md" value="md">MD</option>
+                                                <option name="masters" value="masters">Masters</option>
+                                                <option name="phd" value="phd">PhD</option>
+                                        </select>
+
+                                        <label for="auto_make">Auto make:</label>
+                                        <select class="form-control" name="auto_make" id="auto_make">
+                                                <option name="accura" value="accura">Accura</option>
+                                                <option name="audi" value="audi">Audi</option>
+                                                <option name="bmw" value="bmw">BMW</option>
+                                                <option name="chev" value=chev">Chevrolet</option>
+                                                <option name="dodge" value=dodge">Dodge</option>
+                                                <option name="ford" value="ford">Ford</option>
+                                                <option name="honda" value="honda">Honda</option>
+                                                <option name="jeep" value="jeep">Jeep</option>
+                                                <option name="mercy" value="mercy">Mercedes</option>
+                                                <option name="nissan" value="nissan">Nissan</option>
+                                                <option name="saab" value="saab">Saab</option>
+                                                <option name="suburu" value="suburu">Suburu</option>
+                                                <option name="toyota" value="toyota">Toyota</option>
+                                                <option name="volks" value="volks">Volks Wagen</option>
+                                        </select>
+                                        
+                                        <label for="policy_state">Policy state:</label>
+                                        <select class="form-control" name="policy_state" id="policy_state">
+                                                <option name="policy_IL" value="policy_IL">IL</option>
+                                                <option name="policy_IN" value="policy_IN">IN</option>
+                                                <option name="policy_OH" value="policy_OH">OH</option>
+                                        </select>
+
+                                        <label for="policy_csl">Policy CSL:</label>
+                                        <select class="form-control" name="policy_csl" id="policy_csl">
+                                                <option name="csl100" value="csl100">CSL 100</option>
+                                                <option name="csl250" value="csl250">CSL 250</option>
+                                                <option name="csl500" value="csl500">CSL 500</option>
+                                        </select>
+                            </div>    
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-lg-6 form-group-lg">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">Claim Details</div>
+                                <div class="panel-body">
+                                        <div class="form-group">
+                                                    <label for="incident_city">Incident city</label>
+                                                    <select class="form-control" name="incident_city" id="incident_city">
+                                                        <option name="arlington" value="arlington">Arlington</option>  
+                                                        <option name="columbus" value="columbus">Columbus</option>
+                                                        <option name="hillsdale" value="hillsdale">Hillsdale</option>
+                                                        <option name="northbend" value="northbend">Northbend</option>
+                                                        <option name="northbrook" value="northbrook">Northbrook</option>
+                                                        <option name="riverwood" value="riverwood">Riverwood</option>
+                                                        <option name="springfield" value="springfield">Springfield</option>
+                                                    </select>
+
+                                                    <label for="policy_deduct">Policy deductable:</label>
+                                                    <input type="number" class="form-control" name="policy_deduct" id="policy_deduct">
+
+                                                    <label for="umbrella_limit">Umbrella limit:</label>
+                                                    <input type="number" class="form-control" name="umbrella_limit" id="umbrella_limit">
+
+                                                    <label for="capital_gains">Capital gains:</label>
+                                                    <input type="number" class="form-control" name="capital_gains" id="capital_gains">
+
+                                                    <label for="capital_loss">Capital loss:</label>
+                                                    <input type="number" class="form-control" name="capital_loss" id="capital_loss">
+
+                                                    <label for="number_vehicle">Number of vehicle involved:</label>
+                                                    <input type="number" class="form-control" name="number_vehicle" id="number_vehicle">
+
+                                                    <label for="body">Bodily injuries:</label>
+                                                    <input type="number" class="form-control" name="body" id="body">
+
+                                                    <label for="witnesses">Number of witnesses:</label>
+                                                    <input type="number" class="form-control" name="witnesses" id="witnesses">
+                                                                                          
+                                                    <label for="collision_type">Collision type:</label>
+                                                    <select class="form-control" name="collision_type" id="collision_type">
+                                                        <option name="collision_type_front" value="collision_type_front">Front</option>
+                                                        <option name="collision_type_side" value="collision_type_side">Side</option>
+                                                        <option name="collision_type_rear" value="collision_type_rear">Rear</option>
+                                                        <option name="collision_type_?" value="collision_type_?">Unknown</option>
+                                                    </select>
+                                                
+                                                    <label for="incident_type">Incident type</label>
+                                                    <select class="form-control" name="incident_type" id="incident_type">
+                                                        <option name="multivehicle_collision" value="multivehicle_collision">Multi-vehicle collision</option>
+                                                        <option name="single_vehicle_collision" value="single_vehicle_collision">Single-vehicle collision</option>
+                                                        <option name="parked_car" value="parked_car">Parked car</option>
+                                                        <option name="vehicle_theft" value="vehicle_theft">Vehicle theft</option>
+                                                    </select>
+
+                                                    <label for="incident_severity">Incident severity</label>
+                                                    <select class="form-control" name="incident_severity" id="incident_severity">
+                                                        <option name="major_damage" value="major_damage">Major damage</option>
+                                                        <option name="minor_damage" value="minor_damage">Minor damage</option>
+                                                        <option name="total_loss" value="total_loss">Total loss</option>
+                                                        <option name="trivial_damage" value="trivial_damage">Trivial damage</option>
+                                                    </select>
+                                                    
+                                                    <label for="property_damage">Property damage</label>
+                                                    <select class="form-control" name="property_damage" id="property_damage">
+                                                        <option value="damage_YES">YES</option>
+                                                        <option value="damage_NO">NO</option>
+                                                    </select>
+
+                                                    <label for="incident_state">Incident state</label>
+                                                    <select class="form-control" name="incident_state" id="incident_state">
+                                                        <option name="stateNC" value="stateNC">NC</option>
+                                                        <option name="stateNY" value="stateNY">NY</option>
+                                                        <option name="stateOH" value="stateOH">OH</option>
+                                                        <option name="statePA" value="statePA">PA</option>
+                                                        <option name="stateSC" value="stateSC">SC</option>
+                                                        <option name="stateVA" value="stateVA">VA</option>
+                                                        <option name="stateWV" value="stateWV">WV</option>
+                                                    </select>
+                                                    
+                                                    <label for="police_report_available">Police report</label>
+                                                    <select class="form-control" name="police_report_available" id="police_report_available">
+                                                        <option value="report_YES">YES</option>
+                                                        <option value="report_NO">NO</option>
+                                                    </select>
+
+                                    </div>    
+                                </div>
+                              </div>
+                           
+                            </div>
+                <div class="col-lg-offset-5">
+                        <button type="submit" class="btn btn-lg btn-success">Check</button>
+                    </div>
+                </form>
+            
+        </div>
+
+       
+    </div>
+</div>
+
+<div class="container">
+    {% block content %}
+        <div class="page-header">
+            <h1 class="text-center">Results</h1>
+        </div>
+    {% endblock %}
+
+    {% for id in ids %}
+        <div id="{{id}}"></div>
+    {% endfor %}
+</div>
+
+>
+
+</body>
+</html>
